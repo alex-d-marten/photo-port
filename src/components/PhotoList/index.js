@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-import photo from '../../assets/small/commercial/0.jpg';
-
-function PhotoList() {
+function PhotoList({ category }) {
     const [photos] = useState([
         {
             name: 'Grocery aisle',
@@ -100,12 +98,15 @@ function PhotoList() {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricie',
         },
     ]);
+
+    const currentPhotos = photos.filter(photo => photo.category === category);
+
     return (
         <div>
             <div className="flex-row">
-                {photos.map((image, i) => (
+                {currentPhotos.map((image, i) => (
                     <img
-                        src={require(`../../assets/small/${image.category}/${i}.jpg`).default}
+                        src={require(`../../assets/small/${category}/${i}.jpg`)}
                         alt={image.name}
                         className="img-thumbnail mx-1"
                         key={image.name}
